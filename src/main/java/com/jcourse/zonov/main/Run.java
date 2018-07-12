@@ -2,6 +2,7 @@ package com.jcourse.zonov.main;
 
 import com.jcourse.zonov.data.FileParserBuff;
 import com.jcourse.zonov.data.FileWriter;
+import com.jcourse.zonov.data.FileWriterBuff;
 import com.jcourse.zonov.data.WordCounter;
 import com.jcourse.zonov.exception.BaseException;
 
@@ -64,8 +65,9 @@ public class Run {
         for (WordCounter wc: wordCounterList){
             System.out.println(wc);
         }
+        System.out.println("totalCount: "+ WordCounter.getTotalCount());
 
-        FileWriter.saveToFile(wordCounterList);
+        FileWriterBuff.saveToFile(wordCounterList);
 
     }
 }
