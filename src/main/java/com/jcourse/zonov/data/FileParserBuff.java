@@ -6,9 +6,10 @@ import java.io.*;
 import java.util.*;
 
 public class FileParserBuff {
-    private static List<String> listOfWords = new ArrayList<>();
-    private static Map<String, Long> wordMap = new HashMap<>();
-    private static Map<WordCounter, Long> wordMapObj = new LinkedHashMap<>();
+    private static List<String> wordList = new ArrayList<>();
+    private static Map<String, Long> wordMapStringLong = new HashMap<>();
+    private static Map<WordCounter, Long> wordMapObjLong = new LinkedHashMap<>();
+    private static Map<String, WordCounter> wordMapStringObj = new LinkedHashMap<>();
     private static int totalCount;
 
     public static void parse(String fileName) throws BaseException, IOException {
@@ -26,10 +27,10 @@ public class FileParserBuff {
                     }
                     else if(stringBuffer.length()!=0){ //нужна проверка на наличии символов, иначе будут вноситься пустые элементы
                         totalCount++;
-//                        listOfWords.add(stringBuffer.toString());
-//                        wordMap.merge (stringBuffer.toString(), 1L, (prev, initial) -> prev + initial);
-                        wordMapObj.merge (new WordCounter(stringBuffer.toString()), 1L, (prev, initial) -> prev + initial);
-
+//                        wordList.add(stringBuffer.toString());
+//                        wordMapStringLong.merge (stringBuffer.toString(), 1L, (prev, initial) -> prev + initial);
+//                        wordMapObjLong.merge (new WordCounter(stringBuffer.toString()), 1L, (prev, initial) -> prev + initial);
+                        wordMapStringObj.merge (stringBuffer.toString(), new WordCounter(stringBuffer.toString()), (prev, initial)->prev.addCount(prev));
                         stringBuffer.setLength(0);
                     }
 
@@ -43,18 +44,21 @@ public class FileParserBuff {
     }
 
 
-    public static List<String> getListOfWords() {
-        return listOfWords;
+    public static List<String> getWordList() {
+        return wordList;
     }
 
-    public static Map<String, Long> getWordMap() {
-        return wordMap;
+    public static Map<String, Long> getWordMapStringLong() {
+        return wordMapStringLong;
     }
 
-    public static Map<WordCounter, Long> getWordMapObj() {
-        return wordMapObj;
+    public static Map<WordCounter, Long> getWordMapObjLong() {
+        return wordMapObjLong;
     }
 
+    public static Map<String, WordCounter> getWordMapStringObj() {
+        return wordMapStringObj;
+    }
 
     public static int getTotalCount() {
         return totalCount;

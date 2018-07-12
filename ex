@@ -1,3 +1,6 @@
-Hello world
-best best best best
-My name is Eugene
+Hello, world! world
+my name is Eugene
+Today is a perfect day
+world? are you happy? world?
+Oh my my
+Я да!

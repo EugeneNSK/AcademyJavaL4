@@ -9,12 +9,21 @@ import java.util.Objects;
 public class WordCounter implements Comparable <WordCounter>{
     private String word;
     private int count;
+    private static int totalCount;
 
 
 
     public WordCounter(String word) {
         this.word = word;
         this.count++;
+        totalCount++;
+    }
+
+
+    public WordCounter addCount (WordCounter wc){
+        int tempCount = wc.getCount()+1;
+        wc.setCount(tempCount);
+        return wc;
     }
 
     public int getCount() {
@@ -26,7 +35,11 @@ public class WordCounter implements Comparable <WordCounter>{
     }
 
     public void setCount(int count) {
-        this.count += count;
+        this.count = count;
+    }
+
+    public static int getTotalCount() {
+        return totalCount;
     }
 
     @Override
@@ -53,10 +66,10 @@ public class WordCounter implements Comparable <WordCounter>{
     @Override
     public int compareTo(WordCounter o) {
         if (this.count < o.getCount()){
-            return -1;
+            return 1;
         }
         else if(this.count > o.getCount()){
-            return 1;
+            return -1;
         }
         else return 0;    }
 }
